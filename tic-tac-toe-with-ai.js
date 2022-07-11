@@ -117,6 +117,8 @@ window.addEventListener("DOMContentLoaded", event => {
         let winner = game.checkWin();
         if (winner) {handleWin(winner); return true}
         saveGame();
+
+        return winner;
     }
 
     function handleWin(winner) {
@@ -175,7 +177,7 @@ window.addEventListener("DOMContentLoaded", event => {
         let row = smartMove.row; let col = smartMove.col;
         let target = document.getElementById(`${row},${col}`);
 
-        handleMove(row, col, target);
-        htmlBoard.addEventListener("click", handleClick);
+        let move = handleMove(row, col, target);
+        if (!move) {htmlBoard.addEventListener("click", handleClick)};
     }
 })
